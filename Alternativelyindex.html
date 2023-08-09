@@ -1,0 +1,47 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blockchain Interface</h1>
+    <textarea id="dataInput" placeholder="Enter data to add to the blockchain"></textarea>
+    <button id="addDataBtn">Add Data to Blockchain</button>
+    <p id="resultMessage"></p>
+
+    <script>
+        document.getElementById("addDataBtn").addEventListener("click", async function() {
+            const dataInput = document.getElementById("dataInput").value;
+            const response = await addDataToBlockchain(dataInput);
+            document.getElementById("resultMessage").textContent = response;
+        });
+
+        async function addDataToBlockchain(data) {
+            const filename = "blockchain.txt"; // Replace with the desired file name
+            const url = `/add-data?filename=${filename}&data=${encodeURIComponent(data)}`;
+
+            try {
+                const response = await fetch(url);
+                const result = await response.text();
+                return result;
+            } catch (error) {
+                console.error(error);
+                return "An error occurred while adding data to the blockchain.";
+            }
+        }
+    </script>
+</body>
+</html>
+```
