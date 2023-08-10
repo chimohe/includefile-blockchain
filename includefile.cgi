@@ -1,3 +1,8 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
 use Crypt::Digest::SHA256 qw(sha256_hex);
 use Crypt::RSA;
 use Crypt::RSA::Key;
